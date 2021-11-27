@@ -3,11 +3,11 @@ Attachs a Markdown report your GitHub Actions build. This action uses the Checks
 
 [This report will appear as another job in GitHub Actions UI:](https://github.com/dtinth/markdown-report-action/runs/4339917802?check_suite_focus=true)
 
-![run](https://user-images.githubusercontent.com/193136/143671955-586c13d6-c505-4b10-aab9-6f9343f02ebe.png)
+> ![run](https://user-images.githubusercontent.com/193136/143671955-586c13d6-c505-4b10-aab9-6f9343f02ebe.png)
 
 [In a pull request, the report will appear as neutral status check:](https://github.com/dtinth/markdown-report-action/pull/1/checks?check_run_id=4339917802)
 
-![checks](https://user-images.githubusercontent.com/193136/143671954-776ea75c-f369-4677-9b7e-d5c8918b9b5d.png)
+> ![checks](https://user-images.githubusercontent.com/193136/143671954-776ea75c-f369-4677-9b7e-d5c8918b9b5d.png)
 
 ## Usage
 
