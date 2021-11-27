@@ -18,7 +18,7 @@ runs:
   using: "composite"
   steps:
     - run: |
-        ruby << 'EOF'
+        ruby << 'EOF' | gh api -X POST '/repos/${{ github.repository }}/check-runs' --input -
           require 'json'
           report = {
             name: ENV.fetch('REPORT_CHECK_NAME'),
@@ -32,7 +32,7 @@ runs:
             },
           }
           puts report.to_json
-        EOF | gh api -X POST '/repos/${{ github.repository }}/check-runs' --input -
+        EOF
       env:
         REPORT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         GITHUB_TOKEN: ${{ github.token }}
