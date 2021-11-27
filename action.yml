@@ -1,5 +1,5 @@
 name: "Markdown Report"
-description: "Attachs some Markdown report to the GitHub Actions build. Will be displayed as a status check. Does not clutter your pull requests with automated comments."
+description: "Attachs a Markdown report to the GitHub Actions build as a status check. Does not clutter your pull requests with comments."
 inputs:
   name:
     description: "Check name"
