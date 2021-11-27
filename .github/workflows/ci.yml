@@ -6,12 +6,13 @@ on:
     branches: [main]
 jobs:
   ci:
+    name: Run example
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: git ls-files | tee /tmp/a.txt
+      - run: echo 'Content here. You *can* use Markdown.' | tee /tmp/report.md
       - uses: ./
         with:
-          name: Example
-          title: Example
-          body-file: /tmp/a.txt
+          name: Report name
+          title: Report title here
+          body-file: /tmp/report.md
