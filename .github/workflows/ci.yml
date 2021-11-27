@@ -9,4 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: git ls-files | tee /tmp/a.txt
       - uses: ./
+        with:
+          name: Example
+          title: Example
+          body-file: /tmp/a.txt

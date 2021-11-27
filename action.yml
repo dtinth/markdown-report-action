@@ -1,15 +1,42 @@
 name: "Markdown Report"
 description: "Attachs some Markdown report to the GitHub Actions build. Will be displayed as checks."
-inputs: {}
+inputs:
+  name:
+    description: "Check name"
+    required: true
+  title:
+    description: "Title"
+    required: true
+  body-file:
+    description: "Path to the Markdown file"
+    required: true
 outputs: {}
 branding:
-  icon: 'edit'  
-  color: 'blue'
+  icon: "edit"
+  color: "blue"
 runs:
   using: "composite"
   steps:
     - run: |
-        echo ${{ github.event.pull_request.head.sha || github.sha }}
+        ruby << 'EOF'
+          require 'json'
+          report = {
+            name: ENV.fetch('REPORT_CHECK_NAME'),
+            head_sha: ENV.fetch('REPORT_SHA'),
+            status: 'completed',
+            conclusion: 'neutral',
+            output: {
+              title: ENV.fetch('REPORT_CHECK_OUTPUT_TITLE'),
+              summary: 'This is **summary**',
+              text: 'This is **text**',
+            },
+          }
+          puts report.to_json
+        EOF | gh api -X POST '/repos/${{ github.repository }}/check-runs' --input -
       env:
+        REPORT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         GITHUB_TOKEN: ${{ github.token }}
+        REPORT_CHECK_NAME: ${{ inputs.name }}
+        REPORT_CHECK_OUTPUT_TITLE: ${{ inputs.title }}
+        REPORT_CHECK_BODY_FILE: ${{ inputs.body-file }}
       shell: bash
