@@ -1,0 +1,15 @@
+name: "Markdown Report"
+description: "Attachs some Markdown report to the GitHub Actions build. Will be displayed as checks."
+inputs: {}
+outputs: {}
+branding:
+  icon: 'edit'  
+  color: 'blue'
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        echo ${{ github.event.pull_request.head.sha || github.sha }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      shell: bash
