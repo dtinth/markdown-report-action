@@ -27,8 +27,7 @@ runs:
             conclusion: 'neutral',
             output: {
               title: ENV.fetch('REPORT_CHECK_OUTPUT_TITLE'),
-              summary: 'This is **summary**',
-              text: 'This is **text**',
+              summary: File.read(ENV.fetch('REPORT_CHECK_OUTPUT_SUMMARY_FILE')),
             },
           }
           puts report.to_json
@@ -38,5 +37,5 @@ runs:
         GITHUB_TOKEN: ${{ github.token }}
         REPORT_CHECK_NAME: ${{ inputs.name }}
         REPORT_CHECK_OUTPUT_TITLE: ${{ inputs.title }}
-        REPORT_CHECK_BODY_FILE: ${{ inputs.body-file }}
+        REPORT_CHECK_OUTPUT_SUMMARY_FILE: ${{ inputs.body-file }}
       shell: bash
